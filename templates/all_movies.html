@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1671.2">
+  <style type="text/css">
+    li.li1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    li.li2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000}
+    span.s1 {-webkit-text-stroke: 0px #000000}
+    span.s2 {font-kerning: none}
+    ul.ul1 {list-style-type: disc}
+  </style>
+</head>
+<body>
+<ul class="ul1">
+  <li class="li1"><span class="s1"></span><span class="s2">{% for sg in all_movies %}</span></li>
+  <li class="li1"><span class="s1"></span><span class="s2">{{ sg[0] }} by {{ sg[3] }} - {{ sg[2] }} <span class="Apple-converted-space">    </span>IMDB Rating: {{ sg[1] }}<span class="Apple-converted-space">      </span>Distributed by {{ sg[4] }}</span></li>
+  <li class="li2"></li>
+  <li class="li1"><span class="s1"></span><span class="s2">{% endfor %}<span class="Apple-converted-space"> </span></span></li>
+  <li class="li1"><span class="s1"></span><span class="s2">{% if not all_movies %} There are no saved favorite movies to show. {% endif %}</span></li>
+</ul>
+</body>
+</html>
