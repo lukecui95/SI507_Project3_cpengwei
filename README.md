@@ -52,9 +52,9 @@ It should display:
 
 
 
-3) Change the ULR to : "http://127.0.0.1:5000/movie/new/<title>/<IMDB_rating>/<distributor_name>/<major_genre>/<director_name>/". 
+3) Change the ULR to : "http://127.0.0.1:5000/movie/new/<title\>/<IMDB_rating\>/<distributor_name\>/<major_genre\>/<director_name\>/". 
 
-Change <title>, <IMDB_rating>, <distributor_name>, <major_genre> and <director_name> to what you want. This route will add new movies in our database.
+Change <title\>, <IMDB_rating\>, <distributor_name\>, <major_genre\> and <director_name\> to what you want. This route will add new movies in our database.
 
 However, if the movie is already in our database, it should display:
 
@@ -77,9 +77,9 @@ Mission D by Jay Chou - drama                   IMDB Rating: 5.1      Distribute
 Hunger games 1 by Chris Cedar - drama           IMDB Rating: 8.2      Distributed by Warner Bros
  
 
-5) Change the URL to "http://127.0.0.1:5000/director/new/<name>/<nationality>/". 
+5) Change the URL to "http://127.0.0.1:5000/director/new/<name\>/<nationality\>/". 
 
-Change <name> and <nationality> to whoever director you want.
+Change <name\> and <nationality\> to whoever director you want.
 
 However, if the director is already in our database, it should display:
 
