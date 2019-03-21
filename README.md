@@ -60,7 +60,7 @@ However, if the movie is already in our database, it should display:
 
 That Movie already exists. Please go back to the main app!
 
-If not, for example, if I enter : http://127.0.0.1:5000/movie/new/Hunger games 1/8.2/Warner Bros/drama/Chris Cedar/ , it should display:
+If not, for example, if I enter : "http://127.0.0.1:5000/movie/new/Hunger games 1/8.2/Warner Bros/drama/Chris Cedar/" , it should display:
 
 New Movie: Hunger games 1 by Chris Cedar. Distributed by Warner Bros. Check out the URL for ALL movies to see the whole list.
 
