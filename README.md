@@ -77,7 +77,7 @@ Mission D by Jay Chou - drama                   IMDB Rating: 5.1      Distribute
 Hunger games 1 by Chris Cedar - drama           IMDB Rating: 8.2      Distributed by Warner Bros
  
 
-5) Change the URL to "http://127.0.0.1:5000/director/new/<name>/<nationality>/". Change <name> and <nationality> to whoever director you want.
+5) Change the URL to "http://127.0.0.1:5000/director/new/<name>/<nationality>/". And change <name> and <nationality> to whoever director you want.
 
 However, if the director is already in our database, it should display:
 
