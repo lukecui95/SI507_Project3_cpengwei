@@ -110,7 +110,7 @@ pip install -r requirements.txt
 
 4) Try our Flash app
 
-See "How to run our Flash app"
+See "How to run my Flash application"
 
 5) Deactivate
 
