@@ -31,7 +31,7 @@ My second route is used to add new movies. You need to enter specific paths in o
 
 The third route is used to show all movies' information in my database.
 
-The last route is designed for adding new directors in our database. You also need to enter specific URLS to add new directors.
+The last route is designed for adding new directors in our database. You also need to enter specific URLs to add new directors.
 
 ## Templates
 
@@ -39,6 +39,85 @@ There are two html files in the templates folder. These two html files are used 
 
 ## How to run my Flash application
 
+1) cd to the place you saved our files, and then type at the command prompt:
+python SI507_project3.py runserver
+
+2) Without doing anything else, in a web a browser, type in and check out this URL: "http://127.0.0.1:5000/" 
+
+Since you haven't stored any movies in the database.
+
+It should display:
+
+0 movies saved.
+
+
+
+3) Change the ULR to : "http://127.0.0.1:5000/movie/new/<title>/<IMDB_rating>/<distributor_name>/<major_genre>/<director_name>/". 
+
+Change <title>, <IMDB_rating>, <distributor_name>, <major_genre> and <director_name> to what you want. This route will add new movies in our database.
+
+However, if the movie is already in our database, it should display:
+
+That Movie already exists. Please go back to the main app!
+
+If not, for example, if I enter : http://127.0.0.1:5000/movie/new/Hunger games 1/8.2/Warner Bros/drama/Chris Cedar/ , it should display:
+
+New Movie: Hunger games 1 by Chris Cedar. Distributed by Warner Bros. Check out the URL for ALL movies to see the whole list.
+
+
+ 
+4) Change the URL to "http://127.0.0.1:5000/all_movies".
+
+It should display (movies in your database):
+
+Rush hours by Jackie Chen - action              IMDB Rating: 8.1      Distributed by Warner Bros
+Happy Death Day 1 by James Pratt - thriller     IMDB Rating: 6.5      Distributed by Fox
+Rush hours 1 by Jackie Chen - action            IMDB Rating: 7.9      Distributed by Warner Bros
+Mission D by Jay Chou - drama                   IMDB Rating: 5.1      Distributed by Enlight Pictures
+Hunger games 1 by Chris Cedar - drama           IMDB Rating: 8.2      Distributed by Warner Bros
+ 
+
+4) Change the URL to "http://127.0.0.1:5000/director/new/<name>/<nationality>/". Change <name> and <nationality> to whoever director you want.
+
+However, if the director is already in our database, it should display:
+
+This Director already exists.
+
+If not, it should display(something like this):
+
+New Director: Wilson White -- England.
+
+
+
 ## Use requirements.txt to set your virtual environment
 
+1)Create a virtual environment
+
+python3 -m venv project3-env
+
+2)Activate your virtual environment
+
+source project3-env/bin/activate    # For Mac/Linux...
+
+source project3-env/Scripts/activate    # For Windows
+
+3)Install all requirements
+
+pip install -r requirements.txt
+
+
+4)Try our Flash app
+
+See "How to run our Flash app"
+
+5)Deactivate
+
+deactivate
+
 ## SI507_movies_database_plan
+
+I designed four tables in the diagram, which are Movie, Rating, Distributor and Director.
+See details below:
+
+![Test Image 6]()
+
