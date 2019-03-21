@@ -1,43 +1,83 @@
+import os
+from flask import Flask, render_template, session, redirect, url_for # tools that will make it easier to build on things
+from flask_sqlalchemy import SQLAlchemy # handles database stuff for us - need to pip install flask_sqlalchemy in your virtual env, environment, etc to use this and run this
 
-
-# Set up application
+# Application configurations
 app = Flask(__name__)
+app.debug = True
+app.use_reloader = True
+app.config['SECRET_KEY'] = 'qwertasdfghzxcvbnm'
 
-# Routes
-@app.route('/')
-def home_page():
-    num_movies = Movie
-    return '<h1> {} movies recorded</h1>'.format(num_movies.num_records)
-    #(Return how many movies are in the movies_clean.csv file!)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./SI507_project3.db' # TODO: decide what your new database name will be -- that has to go here
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
-@app.route('/movies/ratings/')
-def movies_ratings():
-
-    #Create instance movies_list
-    movies = Movie(movies_clean,0)
-
-    #Get 10 movies and their IMBD ratings
-    movies_list = movies.get_movies_ratings(10)
-
-    return render_template("movies_ratings.html",rating_list = movies_list)
-
-#This route can get 5 movies with IMDB ratings greater than or equal to <rating>.
-#Please limit <rating> from 0 to 8.5.
-@app.route('/movies/ratings/<rating>')
-def get_top_rated(rating):
-    num =float(rating)
-
-    #Create instance movies_list
-    movies = Movie(movies_clean,0)
-
-    # Get 5 movies with IMDB rating greater than or equal to rating
-    movies_list = movies.get_top_rated(num)
-
-    return render_template("movies_top_rated.html",rating_list = movies_list,num = num)
+# Set up Flask debug stuff
+db = SQLAlchemy(app) # For database use
+session = db.session # to make queries easy
 
 
 
 
-if __name__ == "__main__":
-    app.run()
+######### Everything above this line is important/useful setup, not problem-solving.
+
+
+
+##### Set up Models #####
+
+
+class Movie(db.Model):
+    __tablename__ = "movies"
+    id = db.Column(db.Integer, primary_key=True)
+    ratings_id = db.Column(db.Integer,db.ForeignKey("ratings.id"))
+    ratings = db.relationship("Rating", backref=db.backref("movies", uselist=False))
+
+    title = db.Column(db.String(64))
+    #US_gross = db.Column(db.Float)
+    #Worldwide_gross = db.Column(db.Float)
+    #USDVD_sales = db.Column(db.Float)
+    #production_budget = db.Column(db.Float)
+    #release_date = db.Column(db.String(64))
+    #running_time = db.Column(db.Integer)
+    distributor_id  = db.Column(db.Integer, db.ForeignKey("distributors.id"))
+    #source = db.Column(db.String(64))
+    major_genre = db.Column(db.String(64))
+    #creative_type = db.Column(db.String(64))
+    director_id = db.Column(db.Integer, db.ForeignKey("directors.id"))
+
+
+
+
+class Rating(db.Model):
+    __tablename__ = "ratings"
+    id = db.Column(db.Integer, primary_key=True)
+
+    title = db.Column(db.String(64))
+    MPAA_rating = db.Column(db.String(64))
+    IMDB_rating = db.Column(db.Float)
+
+
+
+
+class Distributor(db.Model):
+    __tablename__ = "distributors"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    headquarter_location = db.Column(db.String(64))
+
+    movies = db.relationship('Movie',backref=db.backref("Distributor"))
+
+
+
+class Director(db.Model):
+    __tablename__ = "directors"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    Nationality = db.Column(db.String(64))
+
+    movies = db.relationship('Movie',backref=db.backref("Director"))
+
+
+
+
