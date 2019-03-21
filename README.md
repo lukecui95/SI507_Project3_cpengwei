@@ -119,5 +119,5 @@ deactivate
 I designed four tables in the diagram, which are Movie, Rating, Distributor and Director.
 See details below:
 
-![Test Image 6]()
+![Test Image 6](https://github.com/lukecui95/SI507_Project3_cpengwei/blob/master/SI507_movies_database.png)
 
