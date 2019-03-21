@@ -80,4 +80,39 @@ class Director(db.Model):
 
 
 
+##### Helper functions #####
+
+### For database additions
+### Relying on global session variable above existing
+
+def get_or_create_distributor(distributor_name):
+    distributor = Distributor.query.filter_by(name=distributor_name).first()
+    if distributor:
+        return distributor
+    else:
+        distributor = Distributor(name=distributor_name)
+        session.add(distributor)
+        session.commit()
+        return distributor
+
+def get_or_create_rating(title,IMDB_rating):
+    rating = Rating.query.filter_by(title=title).first()
+    if rating:
+        return rating
+    else:
+        rating = Rating(title=title, IMDB_rating=IMDB_rating)
+        session.add(rating)
+        session.commit()
+        return rating
+
+
+def get_or_create_director(director_name):
+    director = Director.query.filter_by(name=director_name).first()
+    if director:
+        return director
+    else:
+        director = Director(name=director_name)
+        session.add(director)
+        session.commit()
+        return director
 
