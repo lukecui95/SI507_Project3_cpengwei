@@ -116,3 +116,56 @@ def get_or_create_director(director_name):
         session.commit()
         return director
 
+##### Set up Controllers (route functions) #####
+
+## Main route
+@app.route('/')
+def index():
+    movies = Movie.query.all()
+    num_movies = len(movies)
+    return render_template('index.html', num_movies=num_movies)
+
+#Add new movies
+@app.route('/movie/new/<title>/<IMDB_rating>/<distributor_name>/<major_genre>/<director_name>/')
+def new_movie(title, IMDB_rating, distributor_name, major_genre, director_name):
+    if Movie.query.filter_by(title=title).first(): # if there is a song by that title
+        return "That Movie already exists. Please go back to the main app!"
+    else:
+        distributor = get_or_create_distributor(distributor_name)
+        rating = get_or_create_rating(title,IMDB_rating)
+        director = get_or_create_director(director_name)
+
+        movie = Movie(title=title, ratings_id=rating.id, distributor_id= distributor.id, director_id = director.id, major_genre=major_genre)
+        session.add(movie)
+        session.commit()
+        return "New Movie: {} by {}. Distributed by {}. Check out the URL for ALL movies to see the whole list.".format(movie.title, director.name, distributor.name)
+
+#Show all movies
+@app.route('/all_movies')
+def see_all():
+    all_movies = []
+    movies = Movie.query.all()
+    for s in movies:
+        director = Director.query.filter_by(id=s.director_id).first()
+        distributor = Distributor.query.filter_by(id=s.distributor_id).first()
+        rating = Rating.query.filter_by(id=s.ratings_id).first()
+        all_movies.append((s.title,rating.IMDB_rating, s.major_genre, director.name,distributor.name)) # get list of songs with info to easily access [not the only way to do this]
+    return render_template('all_movies.html',all_movies=all_movies) # check out template to see what it's doing with what we're sending!
+
+#Add new directors
+@app.route('/director/new/<name>/<nationality>/')
+def new_director(name, nationality):
+    if Director.query.filter_by(name=name).first(): # if there is a director by that name
+        return "This Director already exists."
+    else:
+        director = Director(name=name, Nationality=nationality)
+        session.add(director)
+        session.commit()
+        return "New Director: {} -- {}.".format(director.name, director.Nationality)
+
+
+
+if __name__ == '__main__':
+    db.create_all() # This will create database in current directory, as set up, if it doesn't exist, but won't overwrite if you restart - so no worries about that
+    app.run() # run with this: python main_app.py runserver
+
