@@ -77,7 +77,7 @@ Mission D by Jay Chou - drama                   IMDB Rating: 5.1      Distribute
 Hunger games 1 by Chris Cedar - drama           IMDB Rating: 8.2      Distributed by Warner Bros
  
 
-4) Change the URL to "http://127.0.0.1:5000/director/new/<name>/<nationality>/". Change <name> and <nationality> to whoever director you want.
+5) Change the URL to "http://127.0.0.1:5000/director/new/<name>/<nationality>/". Change <name> and <nationality> to whoever director you want.
 
 However, if the director is already in our database, it should display:
 
@@ -91,26 +91,26 @@ New Director: Wilson White -- England.
 
 ## Use requirements.txt to set your virtual environment
 
-1)Create a virtual environment
+1) Create a virtual environment
 
 python3 -m venv project3-env
 
-2)Activate your virtual environment
+2) Activate your virtual environment
 
 source project3-env/bin/activate    # For Mac/Linux...
 
 source project3-env/Scripts/activate    # For Windows
 
-3)Install all requirements
+3) Install all requirements
 
 pip install -r requirements.txt
 
 
-4)Try our Flash app
+4) Try our Flash app
 
 See "How to run our Flash app"
 
-5)Deactivate
+5) Deactivate
 
 deactivate
 
